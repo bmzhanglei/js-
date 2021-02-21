@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app">
+         <input type="text" v-model="name" placeholder="姓名"/>
+         <input type="text" v-model="age"  placeholder="年龄"/>
+         <input type="text" v-model="email"  placeholder="邮箱"/>
+         <input type="text" v-model="tel"  placeholder="电话"/><br>
+         <div><span>姓名：</span>{{name}}</div>
+         <div><span>年龄：</span>{{age}}</div>
+         <div><span>邮箱：</span>{{email}}</div>
+         <div><span>电话：</span>{{tel}}</div>
+         <button id="btn">提交</button>
+         <button onclick="console.log(this)">button</button>
+         <button onclick="(function(){console.log(this)})()">window</button>
+
+    </div>
+
+    <script src="interview1.js"></script>
+    <script src="this1.js"></script>
+    <script src="mvvm.js"></script>
+    <script>
+         const app = new MVVM("#app",{
+             name:"qing",
+             age:"",
+             email:"",
+             tel:""
+         })
+         document.querySelector("#btn").addEventListener("click",function(e){
+            app.setData("name","sfsfsadf")
+         },false)
+
+    </script>
+</body>
+</html>

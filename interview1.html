@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body,html{margin:0;height:100%}
+    p{width: .2rem;height:.2rem;border:solid 1px #000;margin:20px}
+    div{width: 100px;height:200vh;position: relative;}
+    div:before{
+        content:'';
+        position: absolute;
+        left:0;bottom:0;
+        width:100%;
+        height:1px;
+        background:#000
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:2){
+        div:before{
+            transform: scaleY(0.5)
+        }
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:3){
+        div:before{
+            transform: scaleY(0.333333)
+        }
+    }
+
+    blockquote{margin:0;margin-top:10px;padding:0;width:.5rem;
+    height:.5rem;background: gray;font-size:.05rem}
+    section{background-color: #ccc;}
+    </style>
+
+    <script>
+          let ss  = document.querySelector('section')
+        console.log(ss)
+    document.addEventListener('DOMContentLoaded',function(){
+        let s  = document.querySelector('section')
+        console.log(s)
+    })
+    </script>
+</head>
+<body>
+    <aside>
+    <p></p>
+    <section>ddddddddddd</section>
+    <div></div>
+    <blockquote>字体</blockquote>
+</aside>
+    <script>
+  let p =document.querySelector('p');
+  console.log(p.clientHeight);
+        // document.onscroll=function(e){
+        //     let s = document.querySelector('section');
+          
+
+        //   let top =  s.offsetTop;
+
+        //     console.log(e)
+        //     // console.log(top,document.documentElement.scrollTop)
+        // }
+      
+document.addEventListener('scroll',function(e){
+    // debugger
+    console.log(e)
+},false)
+
+          //作用域和值类型引用类型的传递
+        //   var num1 = 55;
+        //   var num2 = 66;
+        //   function f1(num,num1){
+        //     //   var num 
+        //     // var num1;
+        //       num = 100;             
+        //       num1=num1;
+        //     //   num1 = 100
+        //       num2=100;
+        //       console.log(num); //100
+        //       console.log('->',num1); //100  66
+        //       console.log(num2); //100
+        //   }
+        //   // 55  66
+        //   f1(num1,num2);
+        //   console.log(num1); //55
+        //    console.log(num2); //100
+        //    console.log(num);  //报错
+
+           //
+        //    function Person(name,age){
+        //        this.name = name
+        //        this.age = age             
+        //    }
+
+        //    function f2(person){
+        //       person.name = 'ls'
+        //       person = new Person('aa',11)
+        //    }
+
+        //    var  p = new Person('zs',88)
+        //    console.log(p.name) // aa
+        //    f2(p)
+        //    console.log(p.name)  // ls
+
+        //已知有字符串 foo='get-element-by-id'=> 'getElementById' 
+        // function toCamels(str){
+        //    let strs = str.split('-');
+        //    let names = []
+        //    for(let i in strs){             
+        //       if( parseInt(i)>0){
+        //          let name = strs[i].charAt(0).toUpperCase() + strs[i].slice(1)
+        //          names.push(name)
+        //       }else{
+        //          names.push(strs[i])
+        //       }              
+        //    }
+        //    return names.join('')
+        // }
+
+        // console.log(toCamels('get-element-by-id'));
+    //    let res = 'get-element-by-id'.replace(/-\w/g, i=>i.toUpperCase().substr(1,1))
+    //    console.log(res)
+
+        //冒泡排序
+
+        //反转数组
+
+        //1px物理像素实现
+        // window.onload=function(){
+        //     //像素比
+        //     var dpr = window.devicePixelRatio;
+        //     //缩放比例
+        //     var scale = 1/dpr
+        //     var width = document.documentElement.clientWidth;
+        //     //获取meta标签
+        //     var metaNode = document.querySelector('meta[name="viewport"]')
+        //     metaNode.setAttribute('content','width=device-width, initial-scale='+scale+',user-scalable=no')
+        
+        //     //页面中元素宽度，高度，比例反向乘回来
+        //     var htmlNode = document.querySelector('html')
+        //     htmlNode.style.fontSize = width * dpr +'px'
+        // }
+        
+        //移动端的rem适配
+        /*
+          html 根元素字体大小设置屏幕区域的宽
+        */
+        // window.onload=function(){
+        //     var width = document.documentElement.clientWidth
+        //     var htmlNode = document.querySelector('html')
+        //     htmlNode.style.fontSize = width + 'px'
+        // }
+
+       
+        // function Foo(){
+        //     getName = function(){console.log(1)}
+        //     return this
+        // }
+        // Foo.getName = function(){console.log(2)}
+        // Foo.prototype.getName = function(){console.log(3)}
+        // var getName = function(){console.log(4)}
+        // function getName(){console.log(5)}        
+
+        // function Foo(){
+        //     getName = function(){console.log(1)}
+        //     return this  // --> window
+        // }
+        // // var getName;
+        // // function getName(){console.log(5)}
+        // /*********/
+        // Foo.getName = function(){console.log(2)}
+        // Foo.prototype.getName = function(){console.log(3)}
+        // // getName = function(){console.log(4)}
+        // getName = function(){console.log(1)}
+        
+
+        //输出结果  变量提升 和 函数提升
+        // Foo.getName(); //2
+        // getName();  // 4
+        // Foo().getName() // 1 (Foo()).getName() --> window.getName()
+        // getName() //1
+        // new Foo.getName() // 2 new (Foo.getName)() --> new (function(){console.log(2);})()
+        // new Foo().getName() //3 (new Foo()).getName() --> foo.getName() 
+        // new new Foo().getName(); // 3 new ((new Foo()).getName)() --> new (foo.getName)() -->new(function(){console.log(3)})
+
+        //函数节流与函数防抖
+        function throttle(fn,delay){
+            var lastTime = 0
+            return function(){
+                //记录当前函数的触发时间
+                var nowTime = Date.now()
+                if(nowTime-lastTime>delay){
+                    fn.call(this);  //修正this指向问题
+                    lastTime = nowTime  //同步时间
+                }
+            }
+        }
+
+        // document.onscroll = throttle(function(){
+        //     console.log('事件被触发了'+Date.now())
+        // },500)
+
+        //防抖函数：一个需要频繁触发的函数，在规定的时间内，只让最后一次生效，前面的不生效
+        function debounce(fn,delay){
+            var timer = null
+            return function(){
+                clearTimeout(timer)
+                timer = setTimeout(function(){
+                  fn.apply(this)
+                },delay)
+            }
+        }
+
+        // document.querySelector('div').onclick=debounce(function(){
+        //     console.log('点击事件被触发了'+Date.now())
+        // },1000)
+
+       /* 什么是跨域？解决跨域的办法
+        1.同源策略
+         - 是浏览器的安全策略
+         - 协议名、域名、端口号完全一致
+         2.跨域
+           违背同源策略就会产生跨域
+         3.解决跨域
+           jsonp  cors 服务器代理……           
+        */
+       //创建script标签
+        // var script = document.createElement('script')
+        // //设置回调函数
+        // function getData(data){
+        //     //数据请求回来会被触发的函数
+        //     console.log(data)
+        // }
+        // //设置script的src属性，设置请求地址
+        // script.src = 'http://localhost:3000?callback=getData'
+        // //让script生效
+        // document.body.appendChild(script)
+
+        //柯里化函数
+        // !function(){
+        //     function myBind(context=window,...outerArgs){
+        //         let _this = this;             
+        //         return function(...innerArgs){                   
+        //             _this.call(context,...outerArgs.concat(innerArgs))
+        //         }                
+        //     }
+        //     Function.prototype.myBind=myBind;
+        // }()
+        // function fn(...args){
+        //     console.log(args)
+        // }
+        // let obj={name:'OBJ'}
+        // document.body.onclick=fn.myBind(obj,100,200)
+         // document.body.onclick=fn.bind(obj,100,200)
+         
+        function currying(fn,length){
+            let len = length || fn.length
+            return function(...args){
+                if(args.length>=len){
+                   return fn(...args)
+                }
+               return currying(fn.bind(null,...args),len-args.length);
+            }
+        }
+
+        let add = currying((...args)=>eval(args.join('+')),4)
+        // debugger
+        // console.log(length)
+        console.log(add(1)(2)(3,4))
+
+         // 模拟indexOf include
+         function myIndexOf(T){
+             let lenT = T.length,
+                 lenS = this.length,
+                 res = -1;
+              for(let i=0;i<=lenS - lenT;i++){
+                  if(this.substr(i,lenT)===T){
+                      res = i;
+                      break;
+                  }
+              }
+         }
+
+         let s = 'sdfsdfsdf';
+         myIndexOf(s)
+
+
+       
+        </script>
+</body>
+</html>
