@@ -1,19 +1,26 @@
 ## 设计模式<i id="top"></i>
 + 创建型
-  - [工厂模式](#factory)
-  - [单例模式](#single)
-  - [原型模式](#prototype)
+  - [工厂模式](#Factory)
+  - [单例模式](#Singleton)
+  - [原型模式](#Prototype)
+  - [构造器模式](#Constructor)  
+  - [抽象模式](#Abstract)  
+  - [生成器模式](#Build)
 + 结构型
-  - [适配器模式](#adapt)
-  - [代理模式](#proxy)
+  - [适配器模式](#Adapter)
+  - [代理模式](#Proxy)
+  - [装饰模式](#Dectorator)
+  - [外观模式](#Facade)
+  - [享元模式](#Flyweight)
 + 行为型
-  - [策略模式](#strategy)
+  - [策略模式](#Strategy)
   - [迭代器模式](#Iterator)
-  - [观察者模式(发布-订阅模式)](#observation)
-  - [命令模式](#command)
+  - [观察者模式(发布-订阅模式)](#Observer)
+  - [命令模式](#Command)
+  - [中介者](#Mediator)
   - [状态模式](#state)
   
-### <i id="factory"></i>工厂模式&nbsp;[top](#top)
+### <i id="Factory"></i>工厂模式&nbsp;[top](#top)
 > 工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象，用工厂方法代替new操作的一种模式。常见例子：弹窗，message,对外提供api,都是调用api,然后新建一个弹框或者Message的实例
 ```js
 class Creator {
@@ -40,7 +47,7 @@ console.log(chicken.name) // Chicken
  1. 构造函数和创建者分离，对new操作进行封装
  2. 符合开放封闭原则
   
-### <i id="single"></i>单例模式
+### <i id="Singleton"></i>单例模式&nbsp;[top](#top)
 > 定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。例如：线程池、全局缓存、window对象、登陆浮框等
 ```html
  <button id="btn">登录</button>
