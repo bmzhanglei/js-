@@ -1,6 +1,6 @@
 
 
-### Js模块化
+### Js模块化  -> es6_module文件
 > CommonJs,AMD,CMD,UMD,ES6
 * 命名空间 和 IIEF模式 要注意引入顺序
 ``` js
