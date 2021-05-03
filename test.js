@@ -14,25 +14,25 @@
 // // console.log(a())
 // console.log(Object.prototype.__proto__)
 
-function Person(name) {
-    this.name = name
-    return undefined
-    // console.log(this)
-}
+// function Person(name) {
+//     this.name = name
+//     return undefined
+//     // console.log(this)
+// }
 
-Person.prototype.getName = function () {
-    return this.name
-}
+// Person.prototype.getName = function () {
+//     return this.name
+// }
 
-var objFactory = function () {
-    let obj = new Object()
-    let Constructor = [].shift.call(arguments)
-    obj.__proto__ = Constructor.prototype
-    let ret = Constructor.apply(obj, arguments)
-    console.log(Constructor)
-    // console.log(ret)
-    return obj
-}
+// var objFactory = function () {
+//     let obj = new Object()
+//     let Constructor = [].shift.call(arguments)
+//     obj.__proto__ = Constructor.prototype
+//     let ret = Constructor.apply(obj, arguments)
+//     console.log(Constructor)
+//     // console.log(ret)
+//     return obj
+// }
 
 // var a = new Person("a")
 
@@ -111,14 +111,14 @@ var objFactory = function () {
 
 // console.log(cost(100)(200)(200, 2)())
 
-Function.prototype.uncurrying = function () {
-    var self = this;
-    return function () {
-        let obj = [...arguments].shift()
-        let rest = [...arguments].slice(1)
-        return self.apply(obj, rest)
-    }
-}
+// Function.prototype.uncurrying = function () {
+//     var self = this;
+//     return function () {
+//         let obj = [...arguments].shift()
+//         let rest = [...arguments].slice(1)
+//         return self.apply(obj, rest)
+//     }
+// }
 // Function.prototype.uncurrying = function () { 
 //     var self = this; 
 //     return function() { 
@@ -126,9 +126,81 @@ Function.prototype.uncurrying = function () {
 //     return self.apply( obj, arguments ); 
 // }; 
 // };
-var push = Array.prototype.push.uncurrying();
+// var push = Array.prototype.push.uncurrying();
 
-(function () {
-    push(arguments, 4);
-    console.log([...arguments]); // 输出：[1, 2, 3, 4] 
-})(1, 2, 3);
+// (function () {
+//     push(arguments, 4);
+//     console.log([...arguments]); // 输出：[1, 2, 3, 4] 
+// })(1, 2, 3);
+
+// var Singleton = function( name ){ 
+//     this.name = name; 
+//    }; 
+//    Singleton.prototype.getName = function(){ 
+//     console.log  ( this.name ); 
+//    }; 
+//    Singleton.getInstance = (function(){ 
+//     var instance = null; 
+//     return function( name ){ 
+//     if ( !instance ){ 
+//     instance = new Singleton( name ); 
+//     } 
+//     return instance; 
+//     } 
+//    })();
+
+//    var a = Singleton.getInstance( 'sven1' ); 
+// var b = Singleton.getInstance( 'sven2' ); 
+// console.log ( a === b ); // tru
+// a.getName()
+// b.getName()
+
+var OffLightState = function (light) {
+    this.light = light;
+};
+OffLightState.prototype.buttonWasPressed = function () {
+    console.log('弱光'); // offLightState 对应的行为
+    this.light.setState(this.light.weakLightState); // 切换状态到 weakLightState 
+};
+// WeakLightState：
+var WeakLightState = function (light) {
+    this.light = light;
+};
+WeakLightState.prototype.buttonWasPressed = function () {
+    console.log('强光'); // weakLightState 对应的行为
+    this.light.setState(this.light.strongLightState); // 切换状态到 strongLightState 
+};
+// StrongLightState：
+var StrongLightState = function (light) {
+    this.light = light;
+};
+StrongLightState.prototype.buttonWasPressed = function () {
+    console.log('关灯'); // strongLightState 对应的行为
+    this.light.setState(this.light.offLightState); // 切换状态到 offLightState 
+};
+
+var Light = function () {
+    console.log(this)
+    this.offLightState = new OffLightState(this);
+    this.weakLightState = new WeakLightState(this);
+    this.strongLightState = new StrongLightState(this);
+    this.button = null;
+};
+
+Light.prototype.init = function () {
+    var button = document.createElement('button'),
+        self = this;
+    this.button = document.body.appendChild(button);
+    this.button.innerHTML = '开关';
+    this.currState = this.offLightState; // 设置当前状态
+    this.button.onclick = function () {
+        self.currState.buttonWasPressed();
+    }
+};
+
+Light.prototype.setState = function (newState) {
+    this.currState = newState;
+};
+
+var light = new Light();
+light.init();

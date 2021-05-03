@@ -103,3 +103,88 @@ let cc = Object.entries(c)
 
 // oo.b.bb.bbb="cc"
 // console.log(oo === ccc)
+
+
+
+// var obj = {}
+// obj.a = 1
+
+// var newObj = new Object(obj);
+// console.log(newObj === obj) // true
+
+//function  Array Object -> 引用值 -> Object.prototype
+
+// var arr = [1,3,4]
+// var newArr = new Object(arr)
+// console.log(arr === newArr) //true
+
+// console.log(new Array(arr))
+
+// var a = 1
+// a.b = 2  //原始值不能添加属性
+// console.log(a.b) //undefined
+
+// var aa = 1   //原始值
+// var newA = new Number(a)
+// console.log(newA) //引用值
+// console.log(aa === newA) //false
+// console.log(aa == newA) //true
+
+
+//Object.keys   Object.getOwnPropertyNames
+// var obj3 = {
+//     a:1,
+//     b:2
+// }
+
+// Object.defineProperty(obj3,'b',{
+//   enumerable:false
+// })
+// console.log(Object.keys(obj3))
+// //忽略描述符 - enumerable:false
+// console.log(Object.getOwnPropertyNames(obj3))
+
+//稀疏数组  empty -> null undefined
+// const arr = [1,2,,,,4,,,5]
+// const arrNew = arr.find((item,index)=>{ //会打印出 undefined
+//    return index === 3
+// })
+// console.log(arrNew)
+
+// arr.forEach((item,index) =>{  //忽略所有的empty
+//    console.log(item,index)
+// })
+
+Array.from.length   //函数形参的长度 1
+
+//没有参数报错  默认 undefined Array.from(undefined)  
+// 只能接受类数组或可迭代对象
+//Array.from()  
+
+// var obj4 = {a:1,b:2,length:2}
+// Array.from(obj4) //[undefined,undefined]
+
+//把函数拿出来单独使用
+var obj5 = {
+  get a(){
+    return Math.random()>=0.5?1:0
+  }
+}
+
+const round = obj5.__lookupGetter__('a');
+const round2 = Object.getOwnPropertyDescriptor(obj5,"a").get;
+
+console.log(round)
+console.log(round2)
+
+//如果只要get 
+let obj6={}
+// Object.defineProperty(obj,"a",{
+//   get(){
+//     return 'get a'
+//   }
+// })
+obj6.__defineGetter__('a',()=>{
+  return 'get a'
+})
+console.log(obj6)
