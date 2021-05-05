@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <script src='./test.js'></script>
+    <script src='./test.js' defer></script>
+    <script type="module">
+        // //  import {obj} from './te.js'
+        //  let fileName = "te"
+        // //  import(`./${fileName}.js`).then(({obj:o})=>{
+        // //      console.log(o.b)
+        // //  })
+
+        // let arr = [import(`./${fileName}.js`),import(`./te2.js`)]
+        // //  Promise.all(arr).then(([{obj},{obj2}])=>{
+        // //      console.log(obj)
+        // //      console.log(obj2)
+        // //  })
+
+        // const main = async ()=>{
+        //    const [{obj},{obj2}]= await Promise.all(arr)
+        //    console.log(obj)
+        //    console.log(obj2)
+        // }
+        // main()
+        async function* createAsyncIterable(syncIterable) {
+            for (const elem of syncIterable) {
+                yield elem;
+            }
+        }
+
+        const asyncIterable = createAsyncIterable(['a', 'b']);
+        const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+        // asyncIterator
+        //     .next()
+        //     .then(iterResult1 => {
+        //     console.log(iterResult1); // { value: 'a', done: false }
+        //     return asyncIterator.next();
+        //     })
+        //     .then(iterResult2 => {
+        //     console.log(iterResult2); // { value: 'b', done: false }
+        //     return asyncIterator.next();
+        //     })
+        //     .then(iterResult3 => {
+        //     console.log(iterResult3); // { value: undefined, done: true }
+        //     });
+
+            // async function f() {
+            //     for await (const x of createAsyncIterable(['a', 'b'])) {
+            //         console.log(x);
+            //     }
+            // }
+
+            //     f()
+
+
+            //     async function* map(iterable,func){
+            //         const iter = iterable[Symbol.asyncIterable]()
+            //         while(true){
+            //             const {value,done} = await iter.next()
+            //             if(done) break;
+            //             yield func(value)
+            //         }
+            //     }
+    </script>
+
+
+    <button id="btn">button</button>
 </body>
+
 </html>

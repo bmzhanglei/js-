@@ -155,52 +155,122 @@
 // a.getName()
 // b.getName()
 
-var OffLightState = function (light) {
-    this.light = light;
-};
-OffLightState.prototype.buttonWasPressed = function () {
-    console.log('弱光'); // offLightState 对应的行为
-    this.light.setState(this.light.weakLightState); // 切换状态到 weakLightState 
-};
-// WeakLightState：
-var WeakLightState = function (light) {
-    this.light = light;
-};
-WeakLightState.prototype.buttonWasPressed = function () {
-    console.log('强光'); // weakLightState 对应的行为
-    this.light.setState(this.light.strongLightState); // 切换状态到 strongLightState 
-};
-// StrongLightState：
-var StrongLightState = function (light) {
-    this.light = light;
-};
-StrongLightState.prototype.buttonWasPressed = function () {
-    console.log('关灯'); // strongLightState 对应的行为
-    this.light.setState(this.light.offLightState); // 切换状态到 offLightState 
-};
+// var OffLightState = function (light) {
+//     this.light = light;
+// };
+// OffLightState.prototype.buttonWasPressed = function () {
+//     console.log('弱光'); // offLightState 对应的行为
+//     this.light.setState(this.light.weakLightState); // 切换状态到 weakLightState 
+// };
+// // WeakLightState：
+// var WeakLightState = function (light) {
+//     this.light = light;
+// };
+// WeakLightState.prototype.buttonWasPressed = function () {
+//     console.log('强光'); // weakLightState 对应的行为
+//     this.light.setState(this.light.strongLightState); // 切换状态到 strongLightState 
+// };
+// // StrongLightState：
+// var StrongLightState = function (light) {
+//     this.light = light;
+// };
+// StrongLightState.prototype.buttonWasPressed = function () {
+//     console.log('关灯'); // strongLightState 对应的行为
+//     this.light.setState(this.light.offLightState); // 切换状态到 offLightState 
+// };
 
-var Light = function () {
-    console.log(this)
-    this.offLightState = new OffLightState(this);
-    this.weakLightState = new WeakLightState(this);
-    this.strongLightState = new StrongLightState(this);
-    this.button = null;
-};
+// var Light = function () {
+//     console.log(this)
+//     this.offLightState = new OffLightState(this);
+//     this.weakLightState = new WeakLightState(this);
+//     this.strongLightState = new StrongLightState(this);
+//     this.button = null;
+// };
 
-Light.prototype.init = function () {
-    var button = document.createElement('button'),
-        self = this;
-    this.button = document.body.appendChild(button);
-    this.button.innerHTML = '开关';
-    this.currState = this.offLightState; // 设置当前状态
-    this.button.onclick = function () {
-        self.currState.buttonWasPressed();
-    }
-};
+// Light.prototype.init = function () {
+//     var button = document.createElement('button'),
+//         self = this;
+//     this.button = document.body.appendChild(button);
+//     this.button.innerHTML = '开关';
+//     this.currState = this.offLightState; // 设置当前状态
+//     this.button.onclick = function () {
+//         self.currState.buttonWasPressed();
+//     }
+// };
 
-Light.prototype.setState = function (newState) {
-    this.currState = newState;
-};
+// Light.prototype.setState = function (newState) {
+//     this.currState = newState;
+// };
 
-var light = new Light();
-light.init();
+// var light = new Light();
+// light.init();
+
+// const btn = document.querySelector("#btn")
+// console.log(btn)
+
+// const getKey = (key)=>{
+//     return Symbol.for(key)
+// }
+// const obj = {
+//     [getKey('keys')]:"val11"
+// }
+// console.log(Symbol.for('keys') === Symbol.for("keys"))
+
+// console.log(obj[getKey('keys')])
+
+// var obj = {
+//     a:33,
+//     val:44
+// }
+
+// function method({val=null}={}) {
+//     console.log(val)
+//     // console.log(Object.prototype.toString.call(...params))
+//     // return params 
+// }
+
+// // console.log([...'afv'])
+
+
+// // const newMethod = method.bind(this,obj)
+
+// const newMethod2 = (...args) => method.apply(this,args)
+// // // console.log(globalThis === window)
+// // console.log(newMethod2())
+
+// function concatenateAll(...args) {
+//     console.log(args.join("-") )
+//   }
+
+//   const val = concatenateAll("o",'v')
+
+// let arr = [["a",1],[3,88]]
+// let map = new Map(arr)
+// console.log(map.get(3))
+
+// for(let [k,v] of map){
+//     console.log(k,v)
+// }
+// for(let item of map.entries()){
+//     console.log(item)
+// }
+// arr.splice(0,1)
+// console.log(arr)
+
+async function* gen1() {
+    yield 'a';
+    yield 'b';
+    return 2;
+  }
+  
+  async function* gen2() {
+    // result 最终会等于 2
+    const result =  yield* gen1();
+    return result
+  }
+
+  (async ()=>{
+    for await (const [x,y] of gen2()) {
+        console.log(x,y);
+      }
+  })()
