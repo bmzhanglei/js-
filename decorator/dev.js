@@ -1,3 +1,4 @@
-require("babel-register");
+import("babel-register");
 process.env.NODE_ENV = "development";
-require("./src");
+import('./src/index.js')
+// require("./src/index.js");

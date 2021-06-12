@@ -2,5 +2,6 @@
 es6_module/node_modules
 es6_module/yarn.lock
 decorator/yarn.lock
+decorator/yarn-error.log
 decorator/node_modules
 .vscode

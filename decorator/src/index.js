@@ -1,18 +1,22 @@
-const { couldStartTrivia } = require("typescript")
+import { mixins } from './mixins.js'
 
+const Foo = {
+  foo() { console.log('foo') }
+};
 
-@log
-class MyClass {
-	toDo(){
-		//do some
-	}
-}
+@mixins(Foo)
+class MyClass {}
 
-function log(target) { // 这个 target 在这里就是 MyClass 这个类
-   target.prototype.logger = () => `${target.name} 被调用`
+let obj = new MyClass();
+obj.foo()
 
-   console.log("loggerrrrrr---------")
-}
+// @testable
+// class MyTestableClass {
+//   // ...
+// }
 
-const test = new MyClass()
-test.toDo()
+// function testable(target) {
+//   target.isTestable = true;
+// }
+
+// console.log(MyTestableClass.isTestable == false)

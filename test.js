@@ -257,20 +257,397 @@
 // arr.splice(0,1)
 // console.log(arr)
 
-async function* gen1() {
-    yield 'a';
-    yield 'b';
-    return 2;
-  }
+// async function* gen1() {
+//     yield 'a';
+//     yield 'b';
+//     return 2;
+//   }
   
-  async function* gen2() {
-    // result 最终会等于 2
-    const result =  yield* gen1();
-    return result
-  }
+//   async function* gen2() {
+//     // result 最终会等于 2
+//     const result =  yield* gen1();
+//     return result
+//   }
 
-  (async ()=>{
-    for await (const [x,y] of gen2()) {
-        console.log(x,y);
+//   (async ()=>{
+//     for await (const [x,y] of gen2()) {
+//         console.log(x,y);
+//       }
+//   })()
+
+
+  // let obj = {
+  //   * [Symbol.iterator](){
+  //     yield "hello"
+  //     yield "world"
+  //   }
+  // }
+
+  // for(let i of obj){
+  //   console.log(i)
+  // }
+
+  // let obj = {
+  //    6:1,
+  //    length:4,
+  //    push:[].push
+  // }
+
+  // obj.push("t")
+
+  // console.log(obj)
+
+  // function  readFile(file) {
+  //    return {
+  //      [Symbol.iterator](){
+  //         return {
+  //           next(){
+  //             console.log("执行next!")
+  //             return {done:false,value:"---"}
+  //           },
+  //           return(){
+  //              file.close()
+  //              console.log("执行close!")
+  //              return {done:true,value:"over"}
+  //           }
+  //         }
+  //      }
+  //    }
+  // }
+  // const file = {
+  //   close(){
+  //     console.log("执行closexxxx!")
+  //   }
+  // }
+
+  // for(let i of readFile(file)){
+  //   console.log(i)
+  //   throw new Error()
+  // }
+
+//   let obj = {
+//     0:"res",
+//     1:"bbb",
+//     * [Symbol.iterator](){
+//       yield *[1,2]
+//     }
+//   }
+
+//  let arr = [1,4,3]
+
+//  for(let [k,v] of arr.entries()){
+//     console.log(k,v)
+//  }
+
+
+// let set  = new Set([2,"t",4,"t"])
+// // let map = new Map([[2,4],["r","rr"]])
+// for(let [i,v] of set.entries()){
+//   console.log(i,v)
+// }
+// function timeout(ms) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(resolve, ms, 'done');
+//   });
+// }
+
+// timeout(1000).then((value) => {
+//   console.log(value);
+// });
+
+// const p1 = new Promise(function (resolve, reject) {
+//   // setTimeout(() => reject(new Error('fail')), 3000)
+//   setTimeout(() => resolve("success!"), 3000)
+// })
+
+// const p2 = new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve(p1), 1000)
+// })
+
+// p2
+//   .then(result => console.log(result))
+//   .catch(error => console.log(error))
+// Error: fail
+
+// const promise = new Promise(function (resolve, reject) {
+//   return resolve('ok');
+//   setTimeout(function () { throw new Error('test') }, 0)
+// });
+// promise.then(function (value) { console.log(value) }).catch(err=>{
+//   console.log(err)
+// });
+
+// Promise.resolve(2).finally(val=>{
+//    console.log(this)
+// })
+
+// const resolved = Promise.resolve(42);
+// const rejected = Promise.reject(-1);
+
+// const allSettledPromise = Promise.allSettled([resolved, rejected]);
+
+// allSettledPromise.then(function (results) {
+//   console.log(results);
+// });
+
+// console.log(3072000/1024)
+
+// class Point{
+
+// }
+
+// Point.prototype.toStrings = function (a,b) {
+//    console.log("toStrings")
+// }
+
+// const p = new Point()
+// p.__proto__.to = function (params) {
+  
+// }
+// const t = p.__proto__.hasOwnProperty("toStrings")
+
+// console.log(Object.getOwnPropertyNames("to"))
+
+// function selfish (target) {
+//   const cache = new WeakMap();
+//   const handler = {
+//     get (target, key) {
+//       const value = Reflect.get(target, key);
+//       if (typeof value !== 'function') {
+//         return value;
+//       }
+//       if (!cache.has(value)) {
+//         cache.set(value, value.bind(target));
+//       }
+//       return cache.get(value);
+//     }
+//   };
+//   const proxy = new Proxy(target, handler);
+//   return proxy;
+// }
+// class Logger {
+//   constructor() {
+//     // this.printName = this.printName.bind(this);
+//     // console.log(this)
+//     // this.printName = () => this;
+//   }
+//   printName(name = 'thereuu') {
+//     this.print(`Hello ${name}`);
+   
+//   }
+
+//   print(text) {
+//     console.log(text);
+//   }
+// }
+// const logger = selfish(new Logger());
+
+// logger.printName("xxx99")
+// logger.printName("xxx9933")
+// printName(); 
+
+// class IncreasingCounter {
+//   _count = 0;
+
+//   // get value() {
+//   //   // this.increment()
+//   //   console.log('Getting the current value!');
+//   //   return this._count;
+//   // }
+
+//   inc(){   
+//     this._count++;
+//   }
+//   increment() {  
+//     console.log(this)
+ 
+//     this._count++;
+//   }
+// }
+
+// const i = new IncreasingCounter()
+// const {increment} = i
+// increment()
+// console.log(i.value)
+
+// class Logger {
+//   printName(name = 'there') {
+//     this.print(`Hello ${name}`);
+//   }
+
+//   print(text) {
+//     console.log(text);
+//   }
+// }
+
+// const log = new Logger()
+// const { printName } = logger;
+// printName()
+// log.printName()
+
+// class C{
+//   #count = 3
+//   _count = 4
+//   get value(){
+//     this.#increase()
+//     return this.#count
+//   }
+
+//   #increase(){
+//     this.#count++;
+//   }
+// }
+
+// const c = new C()
+
+// console.log(c.#increase())
+
+// class FakeMath {
+//   constructor(){
+//     console.log(new.target)
+//   }
+  
+//   static PI = 22 / 7;
+//   static #totallyRandomNumber = 4;
+
+//   static #computeRandomNumber() {
+//     return FakeMath.#totallyRandomNumber;
+//   }
+
+//   static random() {
+//     console.log('I heard you like random numbers…')
+//     return FakeMath.#computeRandomNumber();
+//   }
+// }
+
+// class Point { /* ... */ 
+//    hah(){
+//      console.log("ah")
+//    }
+// }
+// class ColorPoint extends Point {
+    
+// }
+
+// const c = new ColorPoint()
+// // c.hah()
+// class A {
+//   constructor() {
+//     this.p = 2;
+//   }
+//   pp(){
+//     console.log("PP")
+//   }
+// }
+
+// class B extends A {
+//   constructor(){
+//     super()    
+//   }
+//   get m() {
+//     return super.pp();
+//   }
+// }
+
+// let b = new B();
+// b.m
+// var e = {};
+
+// const s = Object.getOwnPropertyNames(Error)
+// [ 'stack' ]
+
+// const ee = Object.getOwnPropertyNames(e)
+// console.log(s)
+
+// console.log(typeof void 0 === typeof y)
+// console.log(ee)
+
+// function sum(x, y) {
+//   if (y > 0) {
+//     return sum.bind(null, x + 1, y - 1);
+//   } else {
+//     return x;
+//   }
+// }
+
+function trampoline(f) {
+  while (f && f instanceof Function) {
+    f = f();
+  }
+  return f;
+}
+
+// console.log(trampoline(sum(1, 100000)))
+
+
+// function tco(f) {
+//   var value;
+//   var active = false;
+//   var accumulated = [];
+
+//   return function accumulator() {
+//     accumulated.push(arguments);
+//     if (!active) {
+//       active = true;
+//       while (accumulated.length) {
+//         value = f.apply(this, accumulated.shift());
+//       }
+//       active = false;
+//       return value;
+//     }
+//   };
+// }
+
+// var sum = tco(function(x, y) {
+//   if (y > 0) {
+//     return sum(x + 1, y - 1)
+//   }
+//   else {
+//     return x
+//   }
+// });
+
+// console.log(sum(1, 100000)) 
+
+// function haha(a) {
+//   if(!a) return a;
+//   return haha.bind(null,a-1);
+// }
+
+// console.log(haha(100)) ; //输出0
+// console.log(trampoline(haha(12345678))) ; //输出0
+
+// function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
+//   if( n <= 1 ) {return ac2};
+//   return Fibonacci2.bind(null,n - 1, ac2, ac1 + ac2);
+// }
+
+
+function tco(f) {
+  var value;
+  var active = false;
+  var accumulated = [];
+
+  return function accumulator() {
+    accumulated.push(arguments);
+    if (!active) {
+      active = true;    
+      while (accumulated.length) {      
+        value = f.apply(this, accumulated.shift());
       }
-  })()
+      active = false;
+      return value;
+    }
+  };
+}
+
+var sum = tco(function(x, y) {
+  if (y > 0) {
+    return sum(x + 1, y - 1)
+  }
+  else {
+    return x
+  }
+});
+
+sum(1, 100000)
