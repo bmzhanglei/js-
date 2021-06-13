@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css"/>
+    <link rel="manifest" href="manifest.json"/>
+</head>
+<body>
+    <!---使用 npx http-server 启动--->
+    <h1>hello pwa</h1>
+    <script>
+        //网页加载完成的时候，注册service worker
+        window.addEventListener("load",async ()=>{
+            //能力检测
+           if('serviceWorker' in navigator){
+               try{
+                   const registration = await navigator.serviceWorker.register("./sw.js")
+                   console.log("注册成功",registration)
+                }catch(err){
+                    console.log("注册失败")
+               } 
+           } 
+        })
+        if(Notification.permission === 'default'){
+            Notification.requestPermission()
+        }
+        
+        //offline:断网
+        if(!navigator.onLine){
+            new Notification('提示',{body:"无网络，你访问的是缓存！"})
+        }
+        window.addEventListener("online",()=>{
+            new Notification("提示",{body:"你已经链上网络！"})
+        })
+    </script>
+</body>
+</html>
