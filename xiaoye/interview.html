@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //隐式转化
+        // var a = {
+        //     _default:0,
+        //     toString:function(){
+        //         return ++ this._default
+        //     }
+        // }
+        // console.log('1' == 1)
+
+        // if(a==1&&a==2&&a==3){
+        //     console.log("You\'re win!!!")
+        // }
+
+        // var _default = 0;
+        // Object.defineProperty(window,'a',{
+        //     get (){
+        //         return ++ _default
+        //     }
+        // })
+        // if(a===1 && a === 2 && a === 3){
+        //     console.log("You\'re win!!!")
+        // }
+
+        // var len = ({} + {}).length //类型转换 toString  //30
+        // var len2 = ([] + []).length  //0
+        // var len3 = (function(){}).length  //形参个数 //12
+        // function test(a,b){}
+        // console.log(test.length)  //2  形参个数
+
+        //Function
+        // const test = new Function('a','b','c','console.lg(a+b+c)')
+        // const test = new Function('a,b,c','console.log(a+b+c)')
+        // test(1,2,3)
+
+        //在node环境和window环境分别打印什么
+        // var a = 1,b=2;
+        // function test() {
+        //     var b = 3
+        //     // return new Function('c','console.log(a+b+c)') // 这样创建不会形成闭包
+        //     return new Function('c','var b = 4;console.log(a+b+c)') //9 
+        //     eval('!function _(c){console.log(a+b+c)}(4)')  //8
+        // }
+        // var t = test();
+        // t(4)  //window -> 7      node -> a is not defined 访问的是顶级作用域 global
+
+        //两者区别
+        // var t1 = new Function('console.log("t1")')
+        // var t2 = Function('console.log("t2")')
+        // console.log(t1.__proto__ === Function.prototype)
+        // console.log(Function.__proto__ === Function.prototype)
+   
+        // var code  = `function  annoymous() {
+        //     console.log("t1")
+        // }`
+        // eval(`!${code}()`);
+   
+        //Function运用
+   
+   </script>
+</body>
+</html>
