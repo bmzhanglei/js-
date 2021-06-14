@@ -65,21 +65,22 @@ function formatDataTree(data){
                 if(c.pid === p.id){
                     let _children = JSON.parse(JSON.stringify(children))
                     _children.splice(i,1)
-                    dataToTree([c],_children)
                     if(p.children){
                         p.children.push(c)
                     }else{
                         p.children = [c]
                     }
+                    dataToTree([c],_children)
                 }
             })
         })
     }
 }
 
-// const getTree = formatDataTree(arr)
-// console.log(JSON.stringify(getTree,null,2))
+const getTree = formatDataTree(arr)
+console.log(JSON.stringify(getTree,null,2))
 
+//针对数据量不大的情况
 function formatDataTree2(data){
   let _data = JSON.parse(JSON.stringify(data))
   return _data.filter(p=>{
@@ -89,7 +90,7 @@ function formatDataTree2(data){
   })
 }
 
-console.log(JSON.stringify(formatDataTree2(arr),null,2))
+// console.log(JSON.stringify(formatDataTree2(arr),null,2))
 
 
 
@@ -153,7 +154,7 @@ for (let i in obj) {
 
 
 //第一种方案（效率高）
-function arrToTree(pdata=[],pid){
+function arrToTree(pdata=[]){
     pdata.forEach(item=>{     
         const children = getPidChild[item.id]
         if(children && children.length){
