@@ -213,4 +213,45 @@ obj.a = 'UU'
 console.log(obj.a)
 
 //数组的扩展方法
+
+//迭代器 
+function generator (arr){
+    let nextIndex = 0;
+    return {
+        next(){
+            /**
+             * {
+             *   value:?,
+             *   done:?
+             * }
+            */
+           return nextIndex < arr.length
+           ?{value:arr[nextIndex ++ ],done:false}
+           :
+           {value:undefined,done:true}
+        }
+    }
+}
+//Symbol.iterator 的实现
+const o = {
+    0:1,
+    1:1,
+    2:1,
+    length:3
+}
+Object.prototype[Symbol.iterator] = iterator
+for (let i of o){
+    console.log(i)
+}
+function iterator(){
+    var index = 0;
+    var _this = this
+    return {
+        next(){
+            return index < _this.length
+            ? {value:_this[index++],done:false}
+            : {value:undefined,done:true}
+        }
+    }
+}
  ``` 

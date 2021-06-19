@@ -126,7 +126,7 @@
 //     return self.apply( obj, arguments ); 
 // }; 
 // };
-// var push = Array.prototype.push.uncurrying();
+// var push = .push.uncurrying();
 
 // (function () {
 //     push(arguments, 4);
