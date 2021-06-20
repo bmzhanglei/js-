@@ -652,10 +652,22 @@ function trampoline(f) {
 
 // sum(1, 100000)
 
-var a = 1,b=2;
-function test() {
-    var b = 3
-    return new Function('c','console.log(a+b+c)') 
-}
-var t = test();
-t(4)  //window 7 
+
+// let obj = {a:1,b:2}
+// let arr = [1,23,4]
+// delete(arr[1])
+// delete(obj.a)
+// console.log(Object.keys(obj))
+// console.log(arr.length)
+
+// var obj = new Date();
+// obj.valueOf = function () { return 1 };
+// // obj.toString = function () { return 'hello' };
+
+// console.log(obj.valueOf() + 2)  // "hello2"
+
+var obj = {
+  width: '100'
+};
+let v = 20 + obj.width 
+console.log(+'9' + +'1')
