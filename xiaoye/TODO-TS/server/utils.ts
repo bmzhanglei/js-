@@ -10,7 +10,7 @@ export function writeFile<T>(path:string,data:T){
 }
 
 export function fileOperation(path:string,fn?:any):string|void{
-    let todoList:ITodoData[] = JSON.parse(readFile('todo.json')) || '[]';
+    let todoList:ITodoData[] = JSON.parse(readFile('todo.json') || '[]');
     if(!fn){
         return JSON.stringify(todoList)
     }

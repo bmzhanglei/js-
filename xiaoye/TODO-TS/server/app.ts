@@ -17,10 +17,24 @@ app.all('*',(req,res,next)=>{
 
 app.get("/todolist",(req,res)=>{
     const todoList:string = fileOperation('todo.json') as string;
+    debugger
     res.send(todoList)
 })
-app.post("/toggle",(req,res)=>{
 
+app.post("/toggle",(req,res)=>{
+    const id:number = parseInt(req.body.id) 
+    fileOperation('todo.json',function(todoList:ITodoData[]){
+      return todoList.map((todo:ITodoData)=>{
+          if(todo.id === id){
+              todo.completed = !todo.completed
+          }
+          return todo
+      })
+    })
+    res.send({
+        msg:"ok",
+        statusCode:"200"
+    })
 })
 app.post("/remove",(req,res)=>{
   const id:number = parseInt(req.body.id) 
