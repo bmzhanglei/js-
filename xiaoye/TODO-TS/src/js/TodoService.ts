@@ -6,7 +6,7 @@ export function getTodoList(
     target:any,
     methodName:string,
     descriptor:PropertyDescriptor
-){
+):void{
 //   console.log(target,methodName,descriptor)  
    const _origin = descriptor.value
    descriptor.value = function(todoData:ITodoData[]){
@@ -20,4 +20,17 @@ export function getTodoList(
            _origin.call(this,todoData)
        })
    }
+}
+
+export function removeTodo(
+    target:any,
+    methodName:string,
+    descriptor:PropertyDescriptor
+):void{
+    const _origin = descriptor.value
+    descriptor.value = function(target:HTMLElement,id:number){
+        $.post("http://localhost:8081/remove",{id}).then(res=>{
+            _origin.call(this,target,id)
+        })
+    }
 }
