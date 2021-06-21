@@ -6,6 +6,7 @@ export function readFile(path:string){
     return readFileSync(resolve(__dirname,path),'utf8')
 }
 export function writeFile<T>(path:string,data:T){
+    let todoList:ITodoData[] = JSON.parse(readFile('todo.json') || '[]');
      writeFileSync(resolve(__dirname,path),JSON.stringify(data) )
 }
 

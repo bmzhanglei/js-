@@ -26,6 +26,7 @@ app.post("/toggle",(req,res)=>{
     fileOperation('todo.json',function(todoList:ITodoData[]){
       return todoList.map((todo:ITodoData)=>{
           if(todo.id === id){
+              console.log(id)
               todo.completed = !todo.completed
           }
           return todo
@@ -33,7 +34,7 @@ app.post("/toggle",(req,res)=>{
     })
     res.send({
         msg:"ok",
-        statusCode:"200"
+        statusCode:200
     })
 })
 app.post("/remove",(req,res)=>{
@@ -43,11 +44,31 @@ app.post("/remove",(req,res)=>{
   })
   res.send({
       msg:"ok",
-      statusCode:"200"
+      statusCode:200
   })
 })
 
 app.post("/add",(req,res)=>{
+  const todo:ITodoData = JSON.parse(req.body.todo);
+  fileOperation('todo.json',function(todoList:ITodoData[]){
+      const isExist = todoList.find((t:ITodoData)=>t.content===todo.content)
+    if(isExist){
+        res.send({
+            msg:"exist",
+            statusCode:100
+        })
+        return
+    }
+    let nums:number[] = todoList.map((res:ITodoData)=>res.id)  
+    todo.id = Math.max(...nums) + 1 ;    
+    todoList.push(todo)
+    return todoList;
+  })
+   
+  res.send({
+    msg:"ok",
+    statusCode:200
+  })
 
 })
 
