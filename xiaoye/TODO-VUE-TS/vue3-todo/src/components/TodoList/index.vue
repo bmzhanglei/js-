@@ -1,6 +1,5 @@
 <template>
   <div >
-      Todolist
      <todo-item v-for="item of todoList" :key='item.id' :item="item"
        @removeTodo = "removeTodo"
        @setStatus = "setStatus"
@@ -24,9 +23,10 @@ export default defineComponent({
   },
   setup(props,{emit}){
     const {removeTodo,setStatus,setDoing}:IUseTodo = useTodo();
-
     return {
-      removeTodo,setStatus,setDoing
+      removeTodo,
+      setStatus,
+      setDoing
     }
   }
 })

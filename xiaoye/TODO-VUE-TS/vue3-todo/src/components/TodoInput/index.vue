@@ -1,7 +1,6 @@
 <template>
   <div >
     <input type="text" v-model="todoValue" @keyup.enter="submit">
-  
   </div>
 
 </template>
@@ -18,15 +17,9 @@ export default defineComponent({
   const {setTodo} = useTodo()
   //类型推导
    const submit = (e:KeyboardEvent): void => {
-     console.log(e)
      setTodo(todoValue.value);
          todoValue.value = ""
-    //  if(e.key===13&& todoValue.value.trim().length){
-          
-    //  }
    }
-
-
    return {
      todoValue,
      submit    
