@@ -7,7 +7,300 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="button">btn</button>
     <script>
+
+// a = 1
+// function test(e){
+//    function e(){}
+//    arguments[0] =2
+//    console.log(e)
+//    if(a){
+//        var b = 3
+//    }
+//    var c;
+//    a = 4
+//    var a
+//    console.log(b)
+//    f= 5
+//    console.log(c)
+//    console.log(a)
+// }
+// var a;
+// test(1)
+
+// function test(){
+//     a =1
+//     function a(){}
+//     var a = 2
+//     return a
+// }
+
+// function test(){
+//   return a
+//   a = 1
+//   function a(){}
+//   var a = 2
+// }
+
+// function a(){
+//     function b(){
+//         var b = 2
+//         console.log(++c)
+//     }
+//     // var a = 1
+//     return b()
+   
+// }
+// var c = 3
+// a()
+// a()
+// a()
+// console.log(a)
+
+// function sunSched(){
+//     var sunSched = ""
+//     var operation={
+//         setSched : function(thing){
+//             sunSched = thing
+//             console.log(this)
+//             return this
+//         },
+//         showSched:function(){
+//             console.log("---"+ sunSched)
+//             return this
+//         }
+//     }
+//     return operation
+// }
+
+// var sunSched = sunSched()
+// sunSched.setSched("ccc").showSched().showSched()
+// var fn = (
+//     function test1(){
+//         return 1
+//     },
+//     function test2(){
+//         return 2
+//     }
+// )();
+// console.log(typeof(fn))
+
+// function foo1(x){
+//     console.log(arguments)
+//     console.log(x)
+//     return x
+// }
+// foo1(1,2,3)
+
+function HandPhone(){
+
+}
+
+// var hp = new HandPhone()
+// console.log(HandPhone.prototype.constructor)
+// Professor.prototype.tSkill = "JAVA"
+// function Professor(){
+//     this.a = 'aaa'
+// }
+// var professor = new Professor()
+
+// Teacher.prototype = professor
+// function Teacher(){
+//     this.mSkill = "JS/JQ";
+//     this.students = 200
+//     this.success={}
+// }
+// var teacher = new Teacher()
+
+// Student.prototype = teacher
+// function Student(){
+//      this.pSkill = "HTML/CSS";
+// }
+// var student = new Student()
+// delete student.a
+// student.success.baidu = "100"
+// student.success.alibaba = "700"  //可以改，不建议
+// console.log(teacher)
+// function Car(brand,color){
+//     this.brand = brand
+//     this.color = color  
+//     this.run = function(){
+//         console.log("running"+this.brand)
+//     }
+// }
+// Car.prototype.runs = function(){}
+// var newCar = {
+//     displacement:"3.0"
+// }
+// // Car.call(newCar,'Benz','red')
+// Car.apply(newCar,['Benz','red'])  //arguments
+// console.log(newCar) 
+
+function Teacher(){
+    this.tSkill = "JAVA";
+    this.name = "ccc"   
+}
+Teacher.prototype = {
+    mSkill : "JS/JQ"
+}
+
+// Student.prototype = JSON.parse(JSON.stringify(Teacher.prototype)) 
+// Student.prototype =Teacher.prototype
+// Student.prototype.age = 99
+// function Student(){
+//     Teacher.apply(this)
+//     this.name = "sssss"
+// }
+
+// function Buffer(){}
+// Buffer.prototype = Teacher.prototype
+// var buffer = new Buffer()
+// Student.prototype = buffer
+// Student.prototype.age = 99
+
+// var t = new Teacher()
+// console.log(t)
+// var s = new Student()
+// console.log(s)
+
+// function test(){
+//   let b = arguments.callee == test
+//   console.log(b)
+// }
+// test()
+// test1()
+// function test1(){test2()}
+// function test2(){console.log(test2.caller)}
+
+// var a = 1
+// function test(){
+//     var a = 2
+//     this.a = 3
+//     console.log(a)
+// }
+// test()  //2
+// new test();  //2
+// console.log(a) //3
+
+// var obj = {
+//     '2':3,
+//     "3":4,
+//     'length':1,
+//     'push':Array.prototype.push,
+//     'splice':Array.prototype.splice
+
+// }
+// obj.push(1)
+// obj.push(2)
+// console.log(obj)
+
+Array.prototype.myUnshift = function(){
+    // console.log(this)
+    // return Array.prototype.slice.call(arguments).concat(this)
+    // return this.length
+}
+
+//
+// function DataArr(){
+//     var _arr =[],
+//         _val=null;
+//     Object.defineProperty(this,'val',{
+//         get(){
+//             return _val
+//         },
+//         set(newVal){           
+//             _val = newVal;
+//             _arr.push({val:_val})
+//         }
+//     }) 
+//     this.getArr = () => _arr  
+// }
+// var dataArr = new DataArr()
+// dataArr.val=1;
+// dataArr.val=2;
+// console.log(dataArr.getArr())
+
+// let aa = [1,2,4]
+
+// var a = Array.prototype.indexOf.call(aa,4)
+// console.log([] == Array.prototype)
+
+// var x = 1
+// function foo(x = x ){
+//     console.log(x)
+// }
+// foo()
+
+// let a = 10
+// {
+//    let a = 2
+//    console.log(a)
+// }
+// console.log(a)
+
+//
+
+
+// let [a=99,[c]] = [,[3,4]]
+// console.log(a,c)   //1 3
+
+
+// let a = "x" ,b ='y',obj={};
+// ({a:obj[a+b]} = {a:2})
+// console.log(obj['xy'])
+
+// var x = 1
+// function foo(x,y=function(){ console.log(x)}){
+//     var x = 3
+//     y()
+//     console.log(x)
+// }
+// foo()
+// console.log(x)
+
+// var sum = (...args)=>{
+// //   console.log(args)
+// }
+// sum(1,2,3)
+// console.log(((a,b=1,...args)=>{}).length);
+
+
+
+// (function(){
+//     function Button(){
+//         this.button = document.getElementById("button")
+//     }
+//     Button.prototype = {
+//         init(){
+//           this.bindEvent();
+//         },
+//         bindEvent(){
+//            this.button.addEventListener('click',(e)=>this.btnClick(e),false)
+//         },
+//         btnClick(e){
+//            console.log(e)
+//            console.log(this.button.innerHTML)
+//         }
+//     }
+//     new Button().init()
+// })()
+
+// const obj = {  
+//    get a(){
+//     return this._a+"&";
+//    },
+//    set a(newVal){
+//       this._a=(newVal+"a-")
+//    }
+// }
+// obj.a = 'UU'
+// console.log(obj.a)
+
+var a = "true"
+console.log(typeof(Number(a))+'-'+ Number(a))
+
+/***************************   xiaoye  ******************************************/
         //隐式转化
         // var a = {
         //     _default:0,
@@ -78,26 +371,26 @@
         // })
         // console.log(_ + _ + _ + _) //abcd
 
-        var _obj = {
-            a:1,
-            b:2,
-            c:3
-        }
-        var obj = {}
+        // var _obj = {
+        //     a:1,
+        //     b:2,
+        //     c:3
+        // }
+        // var obj = {}
 
-        for(var k in _obj){
-            Object.defineProperty(obj,k,{
-                enumerable:true,
-                writable:k==='b'?false:true,
-                configurable:true, //表示可以删掉
-                value:++_obj[k]
-            })
-        }
+        // for(var k in _obj){
+        //     Object.defineProperty(obj,k,{
+        //         enumerable:true,
+        //         writable:k==='b'?false:true,
+        //         configurable:true, //表示可以删掉
+        //         value:++_obj[k]
+        //     })
+        // }
 
-        for(var k in obj){
-            obj[k] +=1
-        }
-        console.log(obj) 
+        // for(var k in obj){
+        //     obj[k] +=1
+        // }
+        // console.log(obj) 
  
 
         // var len = ({} + {}).length //类型转换 toString  //30
@@ -147,6 +440,9 @@
         // const fn = Function(code)
         // console.log(fn.toString())
         // fn()
+
+
+
 
    
    </script>
