@@ -1,18 +1,22 @@
 <template>
   <div >
+    {{id_test}}
     <input type="text" v-model="todoValue" @keyup.enter="submit">
   </div>
 
 </template>
 <script lang="ts">
 import { defineComponent ,ref} from 'vue'
+import { useStore } from 'vuex'
 import {useTodo} from '../../hooks'
+
 export default defineComponent({
   name:"todoinput",
   components:{
 
   },
   setup(){
+    const store = useStore()
    let todoValue = ref<string>("4445")
   const {setTodo} = useTodo()
   //类型推导
@@ -20,9 +24,11 @@ export default defineComponent({
      setTodo(todoValue.value);
          todoValue.value = ""
    }
+   const id_test = store.getters.getColumnById
    return {
      todoValue,
-     submit    
+     submit    ,
+     id_test
    }
 
   }

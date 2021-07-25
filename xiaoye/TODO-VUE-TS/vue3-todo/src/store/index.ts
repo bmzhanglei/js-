@@ -5,5 +5,10 @@ import actions from './actions'
 export default createStore({
   state,
   mutations,
-  actions
+  actions,
+  getters:{
+    getColumnById: (state) =>  {
+      return {id:state}
+    },
+  }
 })

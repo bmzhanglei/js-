@@ -15,17 +15,17 @@
 var parEle = document.getElementById('parEle');
 
 parEle.addEventListener('click', function () {
-    alert('父级 冒泡');
+    console.log('父级 冒泡');//4
 }, false);
 parEle.addEventListener('click', function () {
-    alert('父级 捕获');
+    console.log('父级 捕获');//1
 }, true);
 
 sonEle.addEventListener('click', function () {
-    alert('子级冒泡');
+    console.log('子级冒泡');//3
 }, false);
 sonEle.addEventListener('click', function () {
-    alert('子级捕获');
+    console.log('子级捕获');//2
 }, true);
 /**
  * 问：0.1 + 0.2 === 0.3 嘛？为什么？
