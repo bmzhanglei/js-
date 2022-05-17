@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script src='./test.js' defer></script>
+    <!-- <script src='./test.js' defer type="module"></script> -->
     <script type="module">
         // //  import {obj} from './te.js'
         //  let fileName = "te"
@@ -69,32 +69,89 @@
             //         }
             //     }
 
-            function loadImageAsync(url) {
-                return new Promise(function(resolve, reject) {
-                    const image = new Image();
+            // function loadImageAsync(url) {
+            //     return new Promise(function(resolve, reject) {
+            //         const image = new Image();
 
-                    image.onload = function() {
-                    resolve(image);
-                    };
+            //         image.onload = function() {
+            //         resolve(image);
+            //         };
 
-                    image.onerror = function() {
-                    reject(new Error('Could not load image at ' + url));
-                    };
+            //         image.onerror = function() {
+            //         reject(new Error('Could not load image at ' + url));
+            //         };
 
-                    image.src = url;
-                });
-                }
+            //         image.src = url;
+            //     });
+            //     }
 
-                loadImageAsync("./image/012.jpg").then(img=>{
-                    console.log(typeof img)
-                    // document.querySelector("body").append(img)
-                })
+            //     loadImageAsync("./image/012.jpg").then(img=>{
+            //         console.log(typeof img)
+            //         // document.querySelector("body").append(img)
+            //     })
+
+//             function sum(a) {
+
+// let currentSum = a;
+
+// function f(b) {
+//   currentSum += b;
+//   return f;
+// }
+
+// f.toString = function() {
+//   return currentSum;
+// };
+
+// return f;
+// }
+
+// const s = sum(0)(1)(2)(3)(4)(5).toString() 
+
+// console.log( sum(1)(2) ); // 3
+// console.log( sum(5)(-1)(2) ); // 6
+// console.log( sum(6)(-1)(-2)(-3) ); // 0
+// console.log( s); // 15
 
 
     </script>
 
+    <script>
 
-    <button id="btn">button</button>
+// async function load() {
+//     let say = await import('./test2.js');
+//     say.sayHi(); // Hello!
+//     // say.bye(); // Bye!
+//     say.default("99-"); // Module loaded (export default)!
+//   }
+//   load() 
+    </script>
+
+
+    <button id="elem">button</button>
+    <img src="image/012.jpg" alt="xxx" title="yyy" />
+    <script>
+        class Menu {
+    handleEvent(event) {
+      // mousedown -> onMousedown
+      let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+      this[method](event);
+    }
+
+    onMousedown(event) {
+      event.target.innerHTML = "Mouse button pressed";
+    }
+
+    onMouseup(event) {
+      event.target.innerHTML += "...and released.";
+    }
+  }
+
+  let menu = new Menu();
+
+  elem.addEventListener('mousedown', menu);
+  elem.addEventListener('mouseup', menu);
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<body>
+<div id="menu">
+    <pre id="rabbit">
+        |\   /|
+         \|_|/
+         /. .\
+        =\_Y_/=
+         {>o<}contextmenu
+      </pre>
+      <button id="btn" onclick="hide(event)">Hide()</button>
+</div>
+
+<script>
+ function hide(e) {
+     console.log(e)
+    let event = new CustomEvent("hide", {
+      cancelable: true // 没有这个标志，preventDefault 将不起作用
+    });
+
+    const flag = rabbit.dispatchEvent(event)
+    if (!flag) {
+      alert('The action was prevented by a handler');
+    } else {
+      rabbit.hidden = true;
+    }
+  }
+
+  btn.addEventListener("contextmenu",function(e){
+      e.preventDefault()
+      console.log(e)
+  })
+
+  rabbit.addEventListener('hide', function(event) {
+    if (confirm("Call preventDefault?")) {
+      event.preventDefault();
+    }
+  });
+</script>
+</body>

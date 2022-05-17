@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="haha" id="haha">
     <input type="checkbox"  :checked="item.status === FINISHED"  @click = "setStatus(item.id)" />
     <span :class="item.status===FINISHED?'line-through':''">{{item.content}}</span>
     <button @click="removeTodo(item.id)">删除</button>
@@ -52,6 +52,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import './css.css';
 .line-through{
   text-decoration: line-through;
 }
@@ -60,5 +61,9 @@ color:red}
 .willdo{
   background-color: orange;
   color:white
+}
+#haha,
+.haha{
+  background-color: #eee;
 }
 </style>
