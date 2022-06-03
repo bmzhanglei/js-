@@ -784,23 +784,23 @@
 
 // console.log(fib(3))
 
-// function sum(a) {
+function sum(a) {
 
-//   let currentSum = a;
+  let currentSum = a;
+  function f(b) {
+    currentSum += b;
+    return f;
+  }
 
-//   function f(b) {
-//     currentSum += b;
-//     return f;
-//   }
+  f[Symbol.toPrimitive] = function() { 
+    return currentSum;
+  };
 
-//   f[Symbol.toPrimitive] = function() {
-//     return currentSum;
-//   };
-
-//   return f;
-// }
-
-// console.log( sum(1)(2) ); // 3
+  return f;
+}
+let ss = sum(5)
+console.log(""+ss)
+// console.log( sum(1)); // 3
 // console.log( sum(5)(-1)(2) ); // 6
 // console.log( sum(6)(-1)(-2)(-3) ); // 0
 // console.log( sum(0)(1)(2)(3)(4)(5) ); // 15
@@ -812,15 +812,59 @@
 // console.log('𝒳😄'.length)
 // let a
 
-var a  
-console.log(a)
-a = 10
+// function send(type) {
+//   let url = "http://127.0.0.1:8080/";
+//   let xhr = new XMLHttpRequest();
+//   xhr.open("post", url, true);
+//   var data;
+//   if (type === "formdata") {
+//       data = new FormData();
+//       data.append("key", "value");
+//   } else if (type === "json") {
+//       xhr.setRequestHeader("Content-Type", "application/json");
+//       data = JSON.stringify({"key": "value"});
+//   } else if (type === "text") {
+//       data = "key=value";
+//   } else if (type === "www") {
+//       // 这个header 其实是 传统post 表单的格式
+//       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//       data = "key=value";
+//   }
+//   xhr.send(data);
+// }
 
-function a() {
-  
-}
-
-// let a = 10
+//promise ajax
+// function ajax(url) {
+//   return new Promise((resolve, reject) => {
+//     //1.创建异步请求对象
+//     let xhr = new XMLHttpRequest();
+//     // 2.配置 ajax 请求地址
+//     xhr.open('get', url, true);
+//     // 3.设置响应头
+//     // application/x-www-form-urlencoded    表单字符类型
+//     // multiline/form-data      表单类型
+//     // application/json
+//     // text/xml
+//     xhr.setRequestHeader(
+//       "Content-Type",
+//       "application/x-www-form-urlencoded"
+//     );    
+//     // 4.绑定监听事件
+//     //每当readyState改变时，都会调用这个函数。
+//     xhr.onreadystatechange = () => {
+//       // 当异步请求状态为4时，请求已完成，并且准备就绪
+//       if (xhr.readyState == 4) {
+//         //如果200，代表请求成功
+//         if (xhr.status == 200)
+//           resolve(xhr.responseText)
+//       }else if(xhr.status == 404) {
+//         reject(new Error('404 NOT FOUND'))
+//       }    
+//     }
+//     // 5.发送请求
+//     xhr.send(null);
+//   })
+// }
 
 
 
