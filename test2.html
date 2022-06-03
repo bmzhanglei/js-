@@ -28,11 +28,13 @@
 
   btn.addEventListener("contextmenu",function(e){
       e.preventDefault()
+      console.log('context')
       console.log(e)
   })
 
   rabbit.addEventListener('hide', function(event) {
     if (confirm("Call preventDefault?")) {
+      console.log('hide')
       event.preventDefault();
     }
   });
