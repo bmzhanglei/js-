@@ -169,44 +169,6 @@ const alldata = arrToTree(getPidChild["0"])
 
 console.log(JSON.stringify(alldata,null,2)) 
 
-//第二种方案
-// function arrayToTree(arr, pid) {
-//     let temp = [];
-//     let treeArr = arr;
-//     treeArr.forEach((item, index) => {
-//         if (item.pid == pid) {
-//             const treedata = arrayToTree(treeArr, treeArr[index].id)
-//             if (treedata.length > 0) {
-//                 treeArr[index].children = treedata;
-//             }
-//             temp.push(treeArr[index]);
-//         }
-//     });
-//     return temp;
-// }
-
-// console.log(JSON.stringify(arrayToTree(arr, "0"), null, 2));
-
-// function getChild(pids,index){
-//     if(pids.length){
-//        let one = trees[index].filter(res=>res.id===pids[0]) 
-
-//        return  getChilds(pids,one)
-//     //    if(pids[1]){
-//     //       const two = one.children.filter(res=>res.id===pids[1])
-//     //        if(pids[2]){
-//     //           const three = two.children.filter(res=>res.id===pids[2])
-//     //        }else{
-//     //            return two.children
-//     //        }
-//     //    }else{
-//     //        return one.children
-//     //    }
-
-//     }else{
-//        return trees[index].children
-//     }
-// }
 
 
 // function getChilds(pids,one){
@@ -219,3 +181,56 @@ console.log(JSON.stringify(alldata,null,2))
 //         }
 //     }
 // }
+
+/********************** 最高效方案 ****************************** */
+const data = [
+    { id: "18", name: "大大", pid: "17", job: "项目xxx" },
+    { id: "01", name: "张大大", pid: "", job: "项目经理" },
+    { id: "17", name: "大大", pid: "16", job: "xxxxxx" },
+    { id: "02", name: "小亮", pid: "01", job: "产品leader" },
+    { id: "03", name: "小美", pid: "01", job: "UIleader" },
+    { id: "04", name: "老马", pid: "01", job: "技术leader" },
+    { id: "05", name: "老王", pid: "01", job: "测试leader" },
+    { id: "06", name: "老李", pid: "01", job: "运维leader" },
+    { id: "07", name: "小丽", pid: "02", job: "产品经理" },
+    { id: "77", name: "小丽", pid: "07", job: "产品经理" },
+    { id: "08", name: "大光", pid: "02", job: "产品经理" },
+    { id: "09", name: "小高", pid: "03", job: "UI设计师" },
+    { id: "10", name: "小刘", pid: "04", job: "前端工程师" },
+    { id: "11", name: "小华", pid: "04", job: "后端工程师" },
+    { id: "12", name: "小李", pid: "04", job: "后端工程师" },
+    { id: "13", name: "小赵", pid: "05", job: "测试工程师" },
+    { id: "14", name: "小强", pid: "05", job: "测试工程师" },
+    { id: "15", name: "小涛", pid: "06", job: "运维工程师" },
+    { id: "16", name: "大大", pid: "", job: "项目经理2" },
+  ];
+
+ 
+  function arrToTree(data) {
+    let tree = [];
+    if (!Array.isArray(data)) {
+      return tree;
+    }
+    let map = {};
+    data.forEach((item) => {
+      map[item.id] = item;
+    });
+    function getPids(item,ids = []) {
+        if (item.pid && map[item.pid]) {
+           return getPids(map[item.pid], ids.concat(item.pid));
+        }
+        return ids.reverse();
+    }
+    // 通过对象的属性名ID，来找到父节点，将存到map里的对象取出来放到父节点里的children数组中。
+    data.forEach((item) => {
+      let parent = map[item.pid];
+      if (parent) {
+        item.pids = getPids(item);
+        (parent.children || (parent.children = [])).push(item);
+      } else {
+        tree.push(item);
+      }
+    });
+    return tree;
+  }
+  console.log(JSON.stringify(arrToTree(data), null, 2), "arrToTree");
